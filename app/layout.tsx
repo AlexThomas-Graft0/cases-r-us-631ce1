@@ -1,40 +1,34 @@
-import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { ThemeProvider } from "next-themes";
-import "./globals.css";
+import './globals.css';
+import { Poppins, IBM_Plex_Mono } from 'next/font/google';
 
-const defaultUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
-
-export const metadata: Metadata = {
-  metadataBase: new URL(defaultUrl),
-  title: "Next.js and Supabase Starter Kit",
-  description: "The fastest way to build apps with Next.js and Supabase",
-};
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
-  subsets: ["latin"],
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
+  display: 'swap',
 });
+
+const ibmPlexMono = IBM_Plex_Mono({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
+export const metadata = {
+  title: 'cases r us',
+  description: 'we are a small family run law firm that specialise in family court cases, navy and yellow branding, super professional, we want people to book us online',
+};
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.className} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+    <html lang="en" className={`${poppins.variable} ${ibmPlexMono.variable}`}>
+      <body className="bg-white text-[#111827] antialiased min-h-screen flex flex-col font-sans selection:bg-[#FECE14] selection:text-[#000000]">
+        {children}
       </body>
     </html>
   );
